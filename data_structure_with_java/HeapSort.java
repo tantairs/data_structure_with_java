@@ -49,6 +49,7 @@ public class HeapSort {
         }
         buildMaxHeap(array);
         for(int i = array.length-1; i >=1; i--){
+            //数组的排序功能尽量模块化实现然后调用!!!
             int temp = 0;
             temp = array[0];
             array[0] = array[i];
