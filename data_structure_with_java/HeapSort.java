@@ -38,18 +38,21 @@ public class HeapSort {
     }
 
     public void buildMaxHeap(int[] array){
-        for(int i = array.length/2; i >=0; i--){
+        for(int i = array.length/2-1; i >=0; i--){
             maxHeapify(array,array.length,i);
         }
     }
 
     public void doHeapSort(int[] array){
+        if (array == null || array.length <= 1) {
+            return;
+        }
         buildMaxHeap(array);
         for(int i = array.length-1; i >=1; i--){
             int temp = 0;
             temp = array[0];
             array[0] = array[i];
-            array[0] = temp;
+            array[i] = temp;
             maxHeapify(array,i,0);
         }
     }
