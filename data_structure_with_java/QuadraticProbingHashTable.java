@@ -1,6 +1,5 @@
 package com.lianxi.data_structure_with_java;
 
-import java.util.List;
 
 /**
  * Created by tantairs on 16/3/15.
@@ -117,5 +116,14 @@ public class QuadraticProbingHashTable<AnyType> {
                 return false;
         }
         return true;
+    }
+
+    public boolean isEmpty(){
+        return currentSize == 0;
+    }
+
+    public AnyType find(AnyType x){
+        int currentPos = findPos(x);
+        return isActive(currentPos)?array[currentPos].element:null;
     }
 }
