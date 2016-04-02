@@ -11,9 +11,10 @@ public class CutRod {
         int[] array = {1,5,8,9,10,17,17,20,24,30};
 //        int result = doCutRod(array,10);
         CutRod cutRod = new CutRod();
-        int result = cutRod.doCutRodMemoized(array,0);
+        int result = cutRod.doCutRodMemoized(array,10);
+        int result2 = cutRod.doBottomUpCutRod(array,10);
 
-        System.out.println(result);
+        System.out.println(result+": " + result2);
     }
     //利用递归的方法解决钢条分割的问题,注意这里的数组下标与n的取值范围.
     public static int doCutRod(int[] price,int n){
@@ -58,8 +59,19 @@ public class CutRod {
 
 
     //使用动态规划的自低向上的过程来求解
-    public static int doBottomUpCutRod(int[] price,int n){
-
-        return 0;
+    public int doBottomUpCutRod(int[] price,int n){
+        int q = 0;
+        r = new int[n+1];
+        r[0] = 0;
+        for(int j = 1; j <=n; j++){
+            q = -10000;
+            for(int i = 1; i <=j; i++){
+                int temp = price[i-1]+r[j-i];
+                if(temp > q)
+                    q = temp;
+            }
+            r[j] = q;
+        }
+        return r[n];
     }
 }
