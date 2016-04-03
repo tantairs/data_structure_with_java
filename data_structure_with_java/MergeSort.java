@@ -22,6 +22,7 @@ public class MergeSort {
     }
 
     public void merge(int[] array,int p,int q,int r){
+        //首先把array分为两部分,每一部分都放到一个临时的数组里,叫left[]和 right[]
         int n1 = q-p+1;
         int n2 = r-q;
         int[] left = new int[n1+1];
@@ -32,6 +33,8 @@ public class MergeSort {
             right[j] = array[q+1+j];
         left[n1] = Integer.MAX_VALUE;
         right[n2] = Integer.MAX_VALUE;
+
+        //开始进行归并操作
         int i = 0;
         int j = 0;
         for(int k = p; k <= r; k++){
