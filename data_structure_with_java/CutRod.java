@@ -6,15 +6,16 @@ package com.lianxi.data_structure_with_java;
 public class CutRod {
 
     int[] r = null;
-
+    int[] s = null;
     public static void main(String[] args){
         int[] array = {1,5,8,9,10,17,17,20,24,30};
 //        int result = doCutRod(array,10);
         CutRod cutRod = new CutRod();
-        int result = cutRod.doCutRodMemoized(array,10);
-        int result2 = cutRod.doBottomUpCutRod(array,10);
+//        int result = cutRod.doCutRodMemoized(array,10);
+//        int result2 = cutRod.doBottomUpCutRod(array,10);
+        cutRod.printCutRodSolution(array,10);
 
-        System.out.println(result+": " + result2);
+//        System.out.println(result+": " + result2);
     }
     //利用递归的方法解决钢条分割的问题,注意这里的数组下标与n的取值范围.
     public static int doCutRod(int[] price,int n){
@@ -73,5 +74,36 @@ public class CutRod {
             r[j] = q;
         }
         return r[n];
+    }
+
+    //改进版的自底向上的动态规划,使得结果给出切割后每段钢条的长度
+    public int doBottomUpCutRodExtended(int[] price,int n){
+        int[] result = new int[2];
+        int q = 0;
+        r = new int[n+1];
+        s = new int[n+1];
+        r[0] = 0;
+        for(int j = 1; j <= n; j++){
+            q = -10000;
+            for(int i = 1; i <= j; i++){
+                if(q < price[i-1]+r[j-i]){
+                    q = price[i-1] + r[j-i];
+                    s[j] = i;
+                }
+            }
+            r[j] = q;
+        }
+        return r[n];
+    }
+
+    //打印改进版的自底向上的动态规划的结果
+    public void printCutRodSolution(int[] price,int n){
+        int result = doBottomUpCutRodExtended(price,n);
+        System.out.println("输入n为"+ n+"时,最优结果为: "+ result);
+        System.out.print("分割结果为: ");
+        while (n >0){
+            System.out.print(s[n]+" ");
+            n = n -s[n];
+        }
     }
 }
