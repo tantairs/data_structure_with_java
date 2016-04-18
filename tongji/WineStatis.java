@@ -27,6 +27,9 @@ public class WineStatis {
         titleRow = new TreeSet<>();
         tempdata = new int[MAXROW][COLOUM];
         ArrayList<Integer> arrayList = new ArrayList<>();
+        ArrayList<Float> arrayListMean = new ArrayList<>();
+        ArrayList<Float> arrayListVar = new ArrayList<>();
+
         int length = 0;
         try {
             File file = new File(path);
@@ -71,12 +74,26 @@ public class WineStatis {
                 Iterator<Integer> iterator2 = titleCol.iterator();
                 while (iterator2.hasNext()) {
                     int num = iterator2.next();
+                    int sum_frequency = 0;
+                    int sum_mean = 0;
+                    int sum_var = 0;
+                    float ave = 0.0f;
+                    float var = 0.0f;
                     ArrayList list = (ArrayList) mapResultTemp.get(num);
                     Map<Integer, Integer> mapSub = countFrequencyByKey(list);
                     for (Map.Entry<Integer, Integer> entry : mapSub.entrySet()) {
+                        int key = entry.getKey();
                         int value = entry.getValue();
+                        //分别计算 频数, 期望, 方差
+                        sum_frequency += value;
+                        sum_mean += key*value;
+                        sum_var += key*key*value;
                         arrayList.add(value);
                     }
+                    ave = (float)sum_mean/sum_frequency;
+                    var = (float)sum_var/sum_frequency- ave*ave;
+                    arrayListMean.add(ave);
+                    arrayListVar.add(var);
                 }
                 //格式化输出结果
                 int director = 0;
@@ -97,6 +114,22 @@ public class WineStatis {
                     bufferedWriter.write(result);
                     bufferedWriter.newLine();
                 }
+
+                String exp = "exp" + ",";
+                Iterator<Float> iteratorExp = arrayListMean.iterator();
+                while (iteratorExp.hasNext()){
+                    exp += iteratorExp.next()+",";
+                }
+                bufferedWriter.write(exp);
+                bufferedWriter.newLine();
+
+                String var = "var" + ",";
+                Iterator<Float> iteratorVar = arrayListVar.iterator();
+                while (iteratorVar.hasNext()){
+                    var += iteratorVar.next()+",";
+                }
+                bufferedWriter.write(var);
+                bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
         } catch (Exception e) {
