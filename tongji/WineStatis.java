@@ -86,12 +86,12 @@ public class WineStatis {
                         int value = entry.getValue();
                         //分别计算 频数, 期望, 方差
                         sum_frequency += value;
-                        sum_mean += key*value;
-                        sum_var += key*key*value;
+                        sum_mean += key * value;
+                        sum_var += key * key * value;
                         arrayList.add(value);
                     }
-                    ave = (float)sum_mean/sum_frequency;
-                    var = (float)sum_var/sum_frequency- ave*ave;
+                    ave = (float) sum_mean / sum_frequency;
+                    var = (float) sum_var / sum_frequency - ave * ave;
                     arrayListMean.add(ave);
                     arrayListVar.add(var);
                 }
@@ -117,16 +117,16 @@ public class WineStatis {
 
                 String exp = "exp" + ",";
                 Iterator<Float> iteratorExp = arrayListMean.iterator();
-                while (iteratorExp.hasNext()){
-                    exp += iteratorExp.next()+",";
+                while (iteratorExp.hasNext()) {
+                    exp += iteratorExp.next() + ",";
                 }
                 bufferedWriter.write(exp);
                 bufferedWriter.newLine();
 
                 String var = "var" + ",";
                 Iterator<Float> iteratorVar = arrayListVar.iterator();
-                while (iteratorVar.hasNext()){
-                    var += iteratorVar.next()+",";
+                while (iteratorVar.hasNext()) {
+                    var += iteratorVar.next() + ",";
                 }
                 bufferedWriter.write(var);
                 bufferedWriter.newLine();
