@@ -50,7 +50,7 @@ public class WineStatis {
     }
 
     /**对第二种数据格式进行统计.
-     *
+     * 方法无需设置簇的个数,自动对簇的个数进行识别,并输出结果
      * @param sourcePath 原数据路径,处理该文件,为了获得数据ID 与 quality 的映射关系
      * @param inputPath  待分析的三列数据文件路径
      * @param outputPath  输出的结果
@@ -184,7 +184,7 @@ public class WineStatis {
     }
 
     //对数据进行分组,并且统计各个组里面的不同数字的频数,均值以及方差,并按照相应的格式输出.
-    public void doStatistic(String inputPath, String outputPath,int clusterNum) {
+    public void doStatistic(String inputPath, String outputPath) {
         titleCol = new TreeSet<>();
         titleRow = new TreeSet<>();
         tempdata = new int[MAXROW][COLOUM];
@@ -259,6 +259,7 @@ public class WineStatis {
                 //格式化输出结果
                 int director = 0;
                 int mod = 0;
+                int splitFormat = titleRow.size();
                 Iterator<Integer> titleRowIteraot = titleRow.iterator();
                 while (titleRowIteraot.hasNext()) {
                     Iterator<Integer> iterator3 = arrayList.iterator();
@@ -266,7 +267,7 @@ public class WineStatis {
                     while (iterator3.hasNext()) {
                         int num = iterator3.next();
                         System.out.print(num + ",");
-                        if (director++ % clusterNum == mod) {
+                        if (director++ % splitFormat == mod) {
                             result += (num + ",");
                         }
                     }

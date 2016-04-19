@@ -62,11 +62,18 @@ public class TestMain {
 //        myTreeSet.printTree();
 //        System.out.println(myTreeSet.findMax());
 
-        SeparateChainingHashTable separateChainingHashTable = new SeparateChainingHashTable();
-        separateChainingHashTable.insert(4);
-        separateChainingHashTable.insert(155);
-        boolean temp = separateChainingHashTable.contains(3);
-        System.out.println(temp);
+//        SeparateChainingHashTable separateChainingHashTable = new SeparateChainingHashTable();
+//        separateChainingHashTable.insert(4);
+//        separateChainingHashTable.insert(155);
+//        boolean temp = separateChainingHashTable.contains(3);
+//        System.out.println(2+"3");
+        int f = 0;
+        int g = 1;
+        for(int i = 0; i <= 15; i++){
+            System.out.println(f);
+            f = f + g;
+            g = f - g;
+        }
 
     }
 }
