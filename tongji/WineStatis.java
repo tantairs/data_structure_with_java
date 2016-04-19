@@ -19,7 +19,7 @@ public class WineStatis {
 
         WineStatis wineStatis = new WineStatis();
 //        wineStatis.doStatistic("/Users/tantairs/Desktop/Wine_Data/middleResult.csv", "/Users/tantairs/Desktop/result.csv",3);
-        wineStatis.doStatisticBySecondWay("/Users/tantairs/Desktop/Wine_Data/Wine_data_CleanUp_New.txt","/Users/tantairs/Downloads/element_CP12_20160326232702_Euclidean.txt","/Users/tantairs/Desktop/result.csv",3);
+        wineStatis.doStatisticBySecondWay("/Users/tantairs/Desktop/Wine_Data/Wine_data_CleanUp_New.txt","/Users/tantairs/Downloads/element_CP12_20160326232702_Euclidean.txt","/Users/tantairs/Desktop/result.csv");
     }
 
     /**
@@ -51,12 +51,11 @@ public class WineStatis {
 
     /**对第二种数据格式进行统计.
      *
-     * @param sourcePath 原数据路径,为了获得数据ID 与 quality 的映射关系
+     * @param sourcePath 原数据路径,处理该文件,为了获得数据ID 与 quality 的映射关系
      * @param inputPath  待分析的三列数据文件路径
      * @param outputPath  输出的结果
-     * @param clusterNum   设置待分析的数据文本中簇的个数
      */
-    public void doStatisticBySecondWay(String sourcePath,String inputPath, String outputPath,int clusterNum) {
+    public void doStatisticBySecondWay(String sourcePath,String inputPath, String outputPath) {
         titleCol = new TreeSet<>();
         titleRow = new TreeSet<>();
         tempdata = new int[MAXROW][COLOUM];
