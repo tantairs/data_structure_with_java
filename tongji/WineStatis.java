@@ -18,8 +18,9 @@ public class WineStatis {
     public static void main(String[] args) {
 
         WineStatis wineStatis = new WineStatis();
-//        wineStatis.doStatistic("/Users/tantairs/Desktop/Wine_Data/middleResult.csv", "/Users/tantairs/Desktop/result.csv",3);
-        wineStatis.doStatisticBySecondWay("/Users/tantairs/Desktop/Wine_Data/Wine_data_CleanUp_New.txt","/Users/tantairs/Downloads/element_CP12_20160326232702_Euclidean.txt","/Users/tantairs/Desktop/result.csv");
+//        wineStatis.doStatistic("/Users/tantairs/Desktop/Wine_Data/middleResult.csv", "/Users/tantairs/Desktop/result.csv");
+//        wineStatis.doStatisticBySecondWay("/Users/tantairs/Desktop/Wine_Data/Wine_data_CleanUp_New.txt","/Users/tantairs/Downloads/element_CP12_20160326232702_Euclidean.txt","/Users/tantairs/Desktop/result.csv");
+        wineStatis.doStatisticWithKmeansVar("/Users/tantairs/Desktop/Wine_Data/middleResult2.csv");
     }
 
     /**
@@ -297,6 +298,111 @@ public class WineStatis {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    //对kmeans 里面的每个簇各个点到中心距离的方差
+    public void doStatisticWithKmeansVar(String inputPath) {
+
+        //每个簇的中心点
+        double[] cluster1 = {0.5392169,2.457380,0.08629518,10.957831,3.305994,0.6538855,10.34413};
+        double[] cluster2 = {0.5188793,2.492996,0.08814871,5.634698,3.283707,0.6457328,10.56437};
+        double[] cluster3 = {0.5098462,2.670577,0.08373462,24.703846,3.326538,0.6680000,10.38750};
+        double[] cluster4 = {0.5072222,5.557407,0.11822222,52.888889,3.326667,0.6922222,10.02963};
+        double[] cluster5 = {0.5397665,2.294643,0.09014286,16.579670,3.340714,0.6677747,10.41145};
+        double[] cluster6 = {0.5360197,2.679605,0.08245395,34.509868,3.305921,0.6594079,10.32182};
+        int number1 = 0;
+        int number2 = 0;
+        int number3 = 0;
+        int number4 = 0;
+        int number5 = 0;
+        int number6 = 0;
+        double sum1 = 0.0;
+        double sum2 = 0.0;
+        double sum3 = 0.0;
+        double sum4 = 0.0;
+        double sum5 = 0.0;
+        double sum6 = 0.0;
+        try {
+            File file = new File(inputPath);
+            if (file.isFile() && file.exists()) {
+                InputStreamReader reader = new InputStreamReader(
+                        new FileInputStream(file), "utf8");
+                BufferedReader bufferedReader = new BufferedReader(reader);
+                String line = null;
+                bufferedReader.readLine();
+
+                //把数据读入到一个二维数组 tempdata[][]中
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] tempColoum = line.split(",");
+                    int cluster = Integer.parseInt(tempColoum[8]);
+                    switch (cluster){
+                        case 1 :
+                            number1++;
+                            double temp1 = 0.0;
+                            for(int i = 0; i < 7; i++){
+                                temp1 += Math.pow((Double.parseDouble(tempColoum[i + 1]) - cluster1[i]),2);
+                            }
+                            temp1 = Math.sqrt(temp1);
+                            temp1 = Math.pow((temp1 - 23.63094030912309),2);
+                            sum1 += temp1;
+                        case 2 :
+                            number2++;
+                            double temp2 = 0.0;
+                            for(int i = 0; i < 7; i++){
+                                temp2 += Math.pow((Double.parseDouble(tempColoum[i + 1]) - cluster2[i]),2);
+                            }
+                            temp2 = Math.sqrt(temp2);
+                            temp2 = Math.pow((temp2 - 23.57712267907748),2);
+                            sum2 += temp2;
+                        case 3 :
+                            number3++;
+                            double temp3 = 0.0;
+                            for(int i = 0; i < 7; i++){
+                                temp3 += Math.pow((Double.parseDouble(tempColoum[i + 1]) - cluster3[i]),2);
+                            }
+                            temp3 = Math.sqrt(temp3);
+                            temp3 = Math.pow((temp3 - 6.093344570590745),2);
+                            sum3 += temp3;
+                        case 4 :
+                            number4++;
+                            double temp4 = 0.0;
+                            for(int i = 0; i < 7; i++){
+                                temp4 += Math.pow((Double.parseDouble(tempColoum[i + 1]) - cluster4[i]),2);
+                            }
+                            temp4 = Math.sqrt(temp4);
+                            temp4 = Math.pow((temp4 - 36.88681483147657),2);
+                            sum4 += temp4;
+                        case 5 :
+                            number5++;
+                            double temp5 = 0.0;
+                            for(int i = 0; i < 7; i++){
+                                temp5 += Math.pow((Double.parseDouble(tempColoum[i + 1]) - cluster5[i]),2);
+                            }
+                            temp5 = Math.sqrt(temp5);
+                            temp5 = Math.pow((temp5 - 9.975159553555093),2);
+                            sum5 += temp5;
+                        case 6 :
+                            number6++;
+                            double temp6 = 0.0;
+                            for(int i = 0; i < 7; i++){
+                                temp6 += Math.pow((Double.parseDouble(tempColoum[i + 1]) - cluster6[i]),2);
+                            }
+                            temp6 = Math.sqrt(temp6);
+                            temp6 = Math.pow((temp6 - 19.669774216551264),2);
+                            sum6 += temp6;
+                    }
+
+
+                }
+                System.out.print(sum1/number1 + " : " + sum2/number2 + " : " + sum3/number3 + " : " + sum4/number4 + " : " + sum5/number5 + " : " + sum6/number6 );
+            }
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
     }
 
     //计算每个list 里面各个数字的频数,并将结果保存到一个map中
