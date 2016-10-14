@@ -27,7 +27,7 @@ public class WineStatis {
 
     /**
      * @param path 原始文件数据路径,该文件是一个txt格式的文件
-     * @return 一个ID 与 quality 的映射集
+     * @return 一个ID 与 quality 的映射集s
      */
     public Map readInitData(String path) {
         //存放ID(name) 与 对应quality的映射
@@ -393,6 +393,7 @@ public class WineStatis {
                                 arrayList1.add(data1);
                                 continue;
                             }
+                            break;
 
                         case 2:
                             number2++;
@@ -423,6 +424,7 @@ public class WineStatis {
                                 arrayList2.add(data2);
                                 continue;
                             }
+                            break;
                         case 3:
                             number3++;
                             if (number3 > 1) {
@@ -452,6 +454,7 @@ public class WineStatis {
                                 arrayList3.add(data3);
                                 continue;
                             }
+                            break;
                         case 4:
                             number4++;
                             if (number4 > 1) {
@@ -482,6 +485,7 @@ public class WineStatis {
                                 arrayList4.add(data4);
                                 continue;
                             }
+                            break;
                         case 5:
                             number5++;
                             if (number5 > 1) {
@@ -511,6 +515,7 @@ public class WineStatis {
                                 arrayList5.add(data5);
                                 continue;
                             }
+                            break;
                         case 6:
                             number6++;
                             if (number6 > 1) {
@@ -540,6 +545,7 @@ public class WineStatis {
                                 arrayList6.add(data6);
                                 continue;
                             }
+                            break;
                     }
 
 
@@ -649,6 +655,7 @@ public class WineStatis {
                                 arrayList1.add(data1);
                                 continue;
                             }
+                            break;
 
                         case 2:
                             number2++;
@@ -680,6 +687,7 @@ public class WineStatis {
                                 arrayList2.add(data2);
                                 continue;
                             }
+                            break;
                         case 3:
                             number3++;
                             if (number3 > 1) {
@@ -710,6 +718,7 @@ public class WineStatis {
                                 arrayList3.add(data3);
                                 continue;
                             }
+                            break;
                         case 4:
                             number4++;
                             if (number4 > 1) {
@@ -739,6 +748,7 @@ public class WineStatis {
                                 arrayList4.add(data4);
                                 continue;
                             }
+                            break;
                         case 5:
                             number5++;
                             if (number5 > 1) {
@@ -769,6 +779,7 @@ public class WineStatis {
                                 arrayList5.add(data5);
                                 continue;
                             }
+                            break;
                         case 6:
                             number6++;
                             if (number6 > 1) {
@@ -799,6 +810,7 @@ public class WineStatis {
                                 arrayList6.add(data6);
                                 continue;
                             }
+                            break;
                     }
 
 

@@ -28,13 +28,13 @@ public class LambdaTest {
         intList.add(15);
         intList.add(16);
         intList.add(17);
-
-        intList.parallelStream().forEach(o->{System.out.println(o);System.out.println(new Date());try {
-            Thread.sleep(10000);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }});
+//
+//        intList.parallelStream().forEach(o->{System.out.println(o);System.out.println(new Date());try {
+//            Thread.sleep(10000);
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }});
 
     }
 
