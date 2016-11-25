@@ -1,4 +1,8 @@
-package com.lianxi.paper;
+package com.lianxi.kmeans;
+
+/**
+ * Created by tantairs on 2016/11/25.
+ */
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,9 +11,6 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.lang.Math;
 
-/**
- * Created by tantairs on 9/29/16.
- */
 public class Kmeans {
 
     Collection<Point> totolPoints = new ArrayList<>();
@@ -31,7 +32,6 @@ public class Kmeans {
             tempPoints[i] = new Point();
         }
     }
-
 
     public static void main(String[] args){
         String path = "/Users/tantairs/Desktop/Wine_Data/Wine_data_CleanUp_New_test.txt";
@@ -211,8 +211,6 @@ public class Kmeans {
         return false;
     }
 
-
-
     /**
      * 初始化数据
      * @param path
@@ -250,5 +248,6 @@ public class Kmeans {
             initPointId[i] = new Random().nextInt(totolPoints.size()-2) + 2; // 生成 ID 为 2 ~ totolPoints.size()-1 之间的随机数
         }
     }
+
 
 }

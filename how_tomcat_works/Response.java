@@ -50,20 +50,7 @@ public class Response implements ServletResponse{
         }
     }
 
-    @Override
-    public String getCharacterEncoding() {
-        return null;
-    }
 
-    @Override
-    public String getContentType() {
-        return null;
-    }
-
-    @Override
-    public ServletOutputStream getOutputStream() throws IOException {
-        return null;
-    }
 
     @Override
     public PrintWriter getWriter() throws IOException {
@@ -73,8 +60,13 @@ public class Response implements ServletResponse{
     }
 
     @Override
-    public void setCharacterEncoding(String s) {
+    public String getCharacterEncoding() {
+        return null;
+    }
 
+    @Override
+    public ServletOutputStream getOutputStream() throws IOException {
+        return null;
     }
 
     @Override
